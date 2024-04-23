@@ -24,4 +24,5 @@ Pacotes para CRUD
  Microsoft.EntityFrameworkCore.SqlServer
 
 Criar um controller CRUD
-dotnet-aspnet-codegenerator controller -name GenresController -m Genre -dc AppDbConext -outDir Controllers -udl
+dotnet-aspnet-codegenerator controller -name GenresController -m Genre -dc AppDbContext -outDir Controllers -udl
+dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc AppDbContext -outDir Controllers -udl
