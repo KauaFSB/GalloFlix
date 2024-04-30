@@ -5,10 +5,23 @@
 
 <div class="text-center">
     <h1 class="display-4">GalloFlix</h1>
-    
+
 </div>
 
-@foreach (var movie in Model)
-{
-    <p>@movie.Title - @movie.OriginalTitle</p>
-}
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        @foreach (var movie in Model)
+        {
+            <div class="col">
+                <div class="card shadow-sm cursor-pointer">
+                    <img src="@movie.Image" class="card-img-top" width="100%" height="300" alt="@movie.Title"/>
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p>@string.Join(", ", movie.Genres.Select(mv => mv.Genre.Name))</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
