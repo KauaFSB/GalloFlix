@@ -26,3 +26,7 @@ Pacotes para CRUD
 Criar um controller CRUD
 dotnet-aspnet-codegenerator controller -name GenresController -m Genre -dc AppDbContext -outDir Controllers -udl
 dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc AppDbContext -outDir Controllers -udl
+
+Abrir o NugetGallery (Shift + Ctrl + P):
+- Pesquisar e Instalar:
+    AspNetCore.IdentityFrameworkCore
