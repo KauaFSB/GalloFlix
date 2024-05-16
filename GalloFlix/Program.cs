@@ -1,5 +1,6 @@
-using GalloFlix.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GalloFlix.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +9,13 @@ builder.Services.AddControllersWithViews();
 
 string conn = builder.Configuration.GetConnectionString("GalloFlix");
 var version = ServerVersion.AutoDetect(conn);
-builder.Services.AddDbContext<AppDbContext>(
-    opt => opt.UseMySql(conn, version)
-);
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(conn, version));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+    opt => opt.SignIn.RequireConfirmedAccount = false
+)
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -28,6 +33,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
