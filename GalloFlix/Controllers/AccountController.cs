@@ -33,7 +33,7 @@ namespace GalloFlix.Controllers;
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult>  Login(LoginVM login)
+        public async Task<IActionResult> Login(LoginVM login)
         {
             if (ModelState.IsValid)
             {

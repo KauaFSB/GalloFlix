@@ -141,7 +141,7 @@ namespace GalloFlix.Migrations
                 {
                     AppUserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
+                    Name = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Birthday = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Photo = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: true)
@@ -291,8 +291,8 @@ namespace GalloFlix.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8a73bdf8-9739-45ef-8916-5e1775e7ebce", null, "Usuário", "USUÁRIO" },
-                    { "bc49d95a-e96d-4539-ac07-3fe4072abdb3", null, "Admin", "ADMIN" }
+                    { "cdb40754-1870-4c5c-b3ee-ccd54e1a4d67", null, "Administrador", "ADMINISTRADOR" },
+                    { "f51ff8a9-c403-4c38-967f-309259c34453", null, "Usuário", "USUÁRIO" }
                 });
 
             migrationBuilder.InsertData(
@@ -300,8 +300,8 @@ namespace GalloFlix.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "00bdd567-6396-49dd-a19c-6818ffca4eed", 0, "98bea8fe-d59e-4091-bdf9-cc9d2e956caf", "user@hotmail.com", true, true, null, "USER@HOTMAIL.COM", "USER", "AQAAAAIAAYagAAAAEJWdy9VaCsT5mOH5rTf0PfSzadqivjtTrmtZk9uSd09EMfK77YXS5w05korMYUMAqw==", null, false, "f3ac46af-9227-4a07-b814-2d5cade21b18", false, "User" },
-                    { "4ea15fa5-6e2e-4a51-b5ae-a0100642a745", 0, "1bfc8d85-b723-42a6-8601-33482360f1b6", "admin@nanniflix.com", true, false, null, "ADMIN@NANNIFLIX.COM", "ADMIN", "AQAAAAIAAYagAAAAEM341uOZEtQYKAQZW4Eti2u1dJcmOJtl6TLhOquCzs6M7BHUfhwbK4cGlmuwlV/YRQ==", null, false, "35fe0535-4fe4-4490-85f4-0077f06a2e24", false, "Admin" }
+                    { "39f0fa61-dafb-4546-8056-4deb9c4e4f2c", 0, "2d561c67-53a5-4023-af4a-c849b6e8d55e", "admin@galloflix.com", true, false, null, "ADMIN@GALLOFLIX.COM", "ADMIN", "AQAAAAIAAYagAAAAEJhiy/zigADkS6PeFVGwZx8Eer+c7uzir0EKJkpb2iGmWEPyRxHn7iaUsgW1z2T3rQ==", null, false, "91592d22-b22d-48ee-a0fb-fa0b4dd85886", false, "Admin" },
+                    { "dc733eec-23e7-42a6-bd6a-2ab23d65bba2", 0, "3004fa01-ff14-405b-9730-6db975a51f6d", "user@gmail.com", true, false, null, "USER@GMAIL.COM", "USER", "AQAAAAIAAYagAAAAEKF5Afdk/Bn/Bq3CfG0O8WZWj0I2dMFN2gm6ezRbIR3qp9ZK3yRcLc8+z2GbrnrO1Q==", null, false, "9c03ab32-f873-43d3-9aa5-944f7879a1a1", false, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -309,8 +309,8 @@ namespace GalloFlix.Migrations
                 columns: new[] { "AppUserId", "Birthday", "Name", "Photo" },
                 values: new object[,]
                 {
-                    { "00bdd567-6396-49dd-a19c-6818ffca4eed", new DateTime(2008, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visitante", "" },
-                    { "4ea15fa5-6e2e-4a51-b5ae-a0100642a745", new DateTime(1998, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "André Nanni", "" }
+                    { "39f0fa61-dafb-4546-8056-4deb9c4e4f2c", new DateTime(2007, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kaua", null },
+                    { "dc733eec-23e7-42a6-bd6a-2ab23d65bba2", new DateTime(1990, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alfredo", null }
                 });
 
             migrationBuilder.InsertData(
@@ -318,9 +318,9 @@ namespace GalloFlix.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "8a73bdf8-9739-45ef-8916-5e1775e7ebce", "00bdd567-6396-49dd-a19c-6818ffca4eed" },
-                    { "8a73bdf8-9739-45ef-8916-5e1775e7ebce", "4ea15fa5-6e2e-4a51-b5ae-a0100642a745" },
-                    { "bc49d95a-e96d-4539-ac07-3fe4072abdb3", "4ea15fa5-6e2e-4a51-b5ae-a0100642a745" }
+                    { "cdb40754-1870-4c5c-b3ee-ccd54e1a4d67", "39f0fa61-dafb-4546-8056-4deb9c4e4f2c" },
+                    { "f51ff8a9-c403-4c38-967f-309259c34453", "39f0fa61-dafb-4546-8056-4deb9c4e4f2c" },
+                    { "f51ff8a9-c403-4c38-967f-309259c34453", "dc733eec-23e7-42a6-bd6a-2ab23d65bba2" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,12 +12,12 @@ public class AppDbContext : IdentityDbContext
     }
 
     public DbSet<AppUser> AppUsers { get; set; }
-     public DbSet<Genre> Genres { get; set; }
-     public DbSet<Movie> Movies { get; set; }
-     public DbSet<MovieGenre> MovieGenre { get; set; }
-     
-     protected override void OnModelCreating(ModelBuilder builder)
-     {
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<Movie> Movies { get; set; }
+    public DbSet<MovieGenre> MovieGenre { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
         base.OnModelCreating(builder);
 
         #region Configuração do muitos para muitos do MovieGenre
@@ -34,7 +34,7 @@ public class AppDbContext : IdentityDbContext
         .HasOne(mg => mg.Genre)
         .WithMany(g => g.Movies)
         .HasForeignKey(mg => mg.GenreId);
-        
+
         #endregion
 
         #region Popular usuário
@@ -46,7 +46,7 @@ public class AppDbContext : IdentityDbContext
                 Name = "Administrador",
                 NormalizedName = "ADMINISTRADOR"
             },
-            
+
             new IdentityRole()
             {
                 Id = Guid.NewGuid().ToString(),
@@ -54,10 +54,10 @@ public class AppDbContext : IdentityDbContext
                 NormalizedName = "USUÁRIO"
             },
 
-        }; 
+        };
         builder.Entity<IdentityRole>().HasData(roles);
 
-        List<IdentityUser> users = new() 
+        List<IdentityUser> users = new()
         {
             new IdentityUser()
             {
@@ -84,44 +84,49 @@ public class AppDbContext : IdentityDbContext
         foreach (var user in users)
         {
             PasswordHasher<IdentityUser> pass = new();
-            user.PasswordHash =  pass.HashPassword(user, "@Etec123");
+            user.PasswordHash = pass.HashPassword(user, "@Etec123");
         }
 
         builder.Entity<IdentityUser>().HasData(users);
 
         List<AppUser> Appusers = new()
         {
-            new AppUser() 
+            new AppUser()
             {
             AppUserId = users[0].Id,
             Name = "Kaua",
             Birthday = DateTime.Parse ("26/01/2007")
             },
 
-            new AppUser() 
+            new AppUser()
             {
-            AppUserId = users[0].Id,
+            AppUserId = users[1].Id,
             Name = "Alfredo",
             Birthday = DateTime.Parse ("09/11/1990")
             }
         };
-        builder.Entity<AppUser>().HasData(AppUsers);
+        builder.Entity<AppUser>().HasData(Appusers);
 
         List<IdentityUserRole<string>> userRoles = new()
         {
             new IdentityUserRole<string>()
             {
                 UserId = users[0].Id,
-                RoleId = users[1].Id
+                RoleId = roles[0].Id
+            },
+            new IdentityUserRole<string>()
+            {
+                UserId = users[0].Id,
+                RoleId = roles[1].Id
             },
 
             new IdentityUserRole<string>()
             {
                 UserId = users[1].Id,
-                RoleId = users[1].Id
+                RoleId = roles[1].Id
             }
         };
         builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
         #endregion
-     }
+    }
 }
