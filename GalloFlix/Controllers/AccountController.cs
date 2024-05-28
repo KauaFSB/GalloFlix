@@ -91,4 +91,10 @@ namespace GalloFlix.Controllers;
                 return false;
             }
         }
+        
+        public IActionResult Register()
+        {
+            return View();
+        }
+
     }
